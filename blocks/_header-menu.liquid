@@ -40,25 +40,7 @@
         data-hydration-key="header-menu-mobile-navigation-bar"
       >
         <div class="menu-list__scroll-container">
-          <ul
-            class="menu-list__list list-unstyled"
-            role="list"
-          >
-            {% for link in block_settings.menu.links %}
-              <li>
-                <a
-                  href="{{ link.url }}"
-                  id="MenuItem-{{ link.handle }}"
-                  class="menu-list__item"
-                  {% if link.current %}
-                    aria-current="page"
-                  {% endif %}
-                >
-                  {{- link.title -}}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
+          <h5>Find the ideal gift for your loved ones.</h5>
         </div>
       </div>
     {% endif %}
