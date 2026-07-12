@@ -381,7 +381,6 @@
 
     {% capture content %}
       {% if custom_color_styles %}
-        <button>Choose Gift</button>
         {% render 'contrast-override', background_color: section.settings[row_setting], text_color: section.settings[text_setting], section_id: row_class_id %}
       {% endif %}
       {% render 'header-row',
