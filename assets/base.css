@@ -4056,14 +4056,3 @@ variant-picker,
   display: block !important;
 } */
 
-.quick-add-modal{
-  width:30% !important;
-  padding:1% !important;
-}
-.product-information__grid .product-media{
-    width: 100vh !important;
-  }
-
-.product-information__grid{
-  display: initial !important;
-}
