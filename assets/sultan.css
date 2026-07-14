@@ -80,7 +80,7 @@ media-gallery:where(.media-gallery--grid) .media-gallery__grid {
     position: relative !important;
 }
 #logoImg{
-    max-width: 100vw;
+    max-width: 50%;
 }
 .hero-sec2{
     width: 100vw;
