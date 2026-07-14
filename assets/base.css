@@ -1,5 +1,10 @@
+@font-face {
+  font-family: jost;
+  src: url('../assets/Jost-VariableFont_wght.ttf');
+}
 * {
   box-sizing: border-box;
+  font-family: jost;
 }
 
 body {
@@ -23,11 +28,12 @@ body {
   --surface-transition-timing: var(--ease-out-quad);
   --submenu-animation-speed: 360ms;
   --submenu-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --nav-btn-color: #FFF544;
+  --nav-background-color: #F5F5F5;
 }
 
 html {
   /* Firefox */
-  scrollbar-width: thin;
   scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
   scroll-behavior: smooth;
 }
@@ -1506,7 +1512,7 @@ media-gallery {
 :not(.dialog-zoomed-gallery) > .product-media-container {
   --slide-width: 100%;
 
-  display: flex;
+  display: initial;
   aspect-ratio: var(--gallery-aspect-ratio, var(--media-preview-ratio));
   max-height: var(--constrained-height);
   width: var(--slide-width, 100%);
@@ -4011,4 +4017,53 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   .sticky-content {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
+}
+
+
+
+
+
+ .quick-add-modal__content {
+  display: flex !important;
+}
+.product-media-container__zoom-button{
+  position: initial !important;
+}
+/*
+.quick-add-modal__media,
+.quick-add-modal__content .product__media-wrapper {
+  width: 100px !important;
+  max-width: 100px !important;
+  height: 100px !important;
+  min-width: 100px !important;
+  
+  margin-bottom: 15px !important;
+}
+
+
+.quick-add-modal__content .product__info-wrapper {
+  width: calc(100% - 120px) !important;
+  display: inline-block !important;
+  padding: 0 !important;
+}
+
+
+.product-form,
+variant-picker,
+.product-form__buttons {
+  width: 100% !important;
+  clear: both !important;
+  display: block !important;
+} */
+
+.quick-add-modal{
+  width:30% !important;
+  padding:1% !important;
+}
+.product-information__grid .product-media{
+    width: 100vh !important;
+  }
+
+.product-information__grid{
+  display: initial !important;
 }

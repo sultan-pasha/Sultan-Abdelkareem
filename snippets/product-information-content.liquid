@@ -95,7 +95,7 @@
     {% render 'skip-to-content-link', href: product_href, text: 'accessibility.skip_to_product_info' %}
   {% endif %}
   <product-component
-    class="{{ product_grid_class }}"
+    class="{{ product_grid_class }} product-component"
     data-product-grid-content
     {% # theme-check-disable UnknownFilter %}
     view-event-payload="{{ product | standard_event_data: 'view' | escape }}"
@@ -111,13 +111,32 @@
       </div>
     {% endcapture %}
 
-    {% for block in render_order_array %}
-      {% if block == 'media' and product_has_media %}
-        {{ media }}
-      {% elsif block == 'product-details' %}
-        {{ product_details }}
-      {% endif %}
+    <div style='display:flex; flex-direction:column;'>
+      {% for block in render_order_array %}
+        {% if block == 'media' and product_has_media %}
+          <div style='display:flex; flex-direction:row; align-items:center;'>
+            {{ media }}
+          {% elsif block == 'product-details' %}
+          <div class="view-product-title" style="flex-direction: column; width:100%">
+            <a
+              href="{{ closest.product.selected_or_first_available_variant.url }}"
+            >
+              {{- closest.product.title }}
+            </a>
+            {% if closest.product.price != blank %}
+                {{ closest.product.price |  money_with_currency}}
+            {% endif %}
+            {%- if closest.product.description != blank -%}
+              <div class="quick-view-description rte">
+                {{ closest.product.description }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {% endif %}
     {% endfor %}
+    {{ product_details }}
+    </div>
   </product-component>
 
   {{ additional_blocks }}
@@ -325,4 +344,45 @@
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
     --sticky-header-offset: var(--header-height);
   }
+
+.product-component{
+  margin:10em !important;
+}
+
+@media screen and (min-width: 750px) {
+    media-gallery:where(.media-gallery--grid) .media-gallery__grid {
+        display: initial !important;
+    }
+}
+
+media-gallery:where(.media-gallery--grid) .media-gallery__grid {
+    display: initial !important;
+}
+
+.quick-add-modal__content .product-information__media {
+    @media screen and (min-width: 750px) {
+        position: initial !important;
+        grid-column: initial !important; 
+        width: var(--quick-add-modal-gallery-width);
+        overflow-y: initial !important; 
+        -ms-overflow-style: none;
+        scrollbar-width: initial !important; 
+    }
+}
+
+.quick-add-modal__content .product-information__media media-gallery {
+    @media screen and (min-width: 750px) {
+        position: static !important;
+        inset: initial !important;
+    }
+}
+.product-information__media{
+  min-width: 10% !important;
+}
+.product-details{
+  align-self: auto !important;
+}
+.price{
+  display:none;
+}
 {% endstylesheet %}

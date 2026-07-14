@@ -20,9 +20,7 @@
   %}
 {% endcapture %}
 
-{% capture additional_blocks %}
-  {% content_for 'blocks' %}
-{% endcapture %}
+
 
 {% if section.settings.enable_sticky_add_to_cart %}
   {% liquid
@@ -30,7 +28,6 @@
     # Get the initial quantity based on quantity rules
     assign initial_quantity = current_variant.quantity_rule.min | default: 1
   %}
-
   <sticky-add-to-cart
     class="sticky-add-to-cart"
     data-variant-available="{{ current_variant.available }}"
@@ -113,9 +110,8 @@
         class="sticky-add-to-cart__price"
         data-testid="sticky-price-display"
       >
-        {% render 'price', product_resource: product, show_sale_price_first: true %}
+        {% comment %} {% render 'price', product_resource: product, show_sale_price_first: true %} {% endcomment %}
       </div>
-
       <button
         type="button"
         class="sticky-add-to-cart__button add-to-cart-button button"
@@ -370,6 +366,60 @@
     },
     {
       "type": "@app"
+    },
+    {
+      "type": "text"
+    },
+    {
+      "type": "icon"
+    },
+    {
+      "type": "image"
+    },
+    {
+      "type": "button"
+    },
+    {
+      "type": "video"
+    },
+    {
+      "type": "group"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "accordion"
+    },
+    {
+      "type": "product-recommendations"
+    },
+    {
+      "type": "price"
+    },
+    {
+      "type": "variant-picker"
+    },
+    {
+      "type": "buy-buttons"
+    },
+    {
+      "type": "product-description"
+    },
+    {
+      "type": "review"
+    },
+    {
+      "type": "accelerated-checkout"
+    },
+    {
+      "type": "_divider"
+    },
+    {
+      "type": "product-inventory"
+    },
+    {
+      "type": "product-custom-property"
     }
   ],
   "disabled_on": {

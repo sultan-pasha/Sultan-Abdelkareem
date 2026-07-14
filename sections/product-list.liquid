@@ -33,8 +33,37 @@
     {% if section.settings.collection != blank and shop.products_count != 0 %}
       {% paginate section.settings.collection.products by max_items %}
         {% for product in section.settings.collection.products limit: max_items %}
+          {% liquid
+            # تحديد الإحداثيات لكل منتج بناءً على ترتيبه
+            if forloop.index == 1
+              assign temp_top = section.settings.product_1_top | default: 50
+              assign temp_left = section.settings.product_1_left | default: 50
+            elsif forloop.index == 2
+              assign temp_top = section.settings.product_2_top | default: 50
+              assign temp_left = section.settings.product_2_left | default: 50
+            elsif forloop.index == 3
+              assign temp_top = section.settings.product_3_top | default: 50
+              assign temp_left = section.settings.product_3_left | default: 50
+            elsif forloop.index == 4
+              assign temp_top = section.settings.product_4_top | default: 50
+              assign temp_left = section.settings.product_4_left | default: 50
+            elsif forloop.index == 5
+              assign temp_top = section.settings.product_5_top | default: 50
+              assign temp_left = section.settings.product_5_left | default: 50
+            elsif forloop.index == 6
+              assign temp_top = section.settings.product_6_top | default: 50
+              assign temp_left = section.settings.product_6_left | default: 50
+            else
+            else
+              assign temp_top = null
+              assign temp_left = null
+            endif
+          %}
         <div
           class="resource-list__item"
+          {% if temp_top != null %}
+            style="--override-top: {{ temp_top }}%; --override-left: {{ temp_left }}%;"
+          {% endif %}
         >
             {% content_for 'block',
               type: '_product-card',
@@ -45,8 +74,7 @@
           </div>
 
           {% unless forloop.last %}
-            <!--@list/split-->
-          {% endunless %}
+            {% endunless %}
         {% endfor %}
       {% endpaginate %}
     {% else %}
@@ -346,6 +374,134 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Custom Hotspots Position (Homepage Overrides)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Use these sliders to adjust the hotspot coordinates for each specific product item on the homepage."
+    },
+    {
+      "type": "range",
+      "id": "product_1_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 1 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_1_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 1 - Hotspot Left (Horizontal)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_2_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 2 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_2_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 2 - Hotspot Left (Horizontal)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_3_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 3 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_3_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 3 - Hotspot Left (Horizontal)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_4_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 4 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_4_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 4 - Hotspot Left (Horizontal)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_5_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 5 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_5_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 5 - Hotspot Left (Horizontal)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_6_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 6 - Hotspot Top (Vertical)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "product_6_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Product 6 - Hotspot Left (Horizontal)",
+      "default": 50
     }
   ],
   "presets": [
@@ -514,7 +670,7 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": ["product-card-gallery"]
         }
       },
       "block_order": []
@@ -684,7 +840,7 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
+          "block_order": ["product-card-gallery"]
         }
       },
       "block_order": []
@@ -855,11 +1011,11 @@
               }
             }
           },
-          "block_order": ["product-card-gallery", "product_title", "price"]
-        }
+          "block_order": ["product-card-gallery"]
+        },
       },
       "block_order": []
-    }
+    },
   ]
 }
 {% endschema %}
