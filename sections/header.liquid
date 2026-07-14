@@ -3,7 +3,10 @@
 <header>
   <nav>
     <ul>
-      <li class='nav-item1'><img id='logoImg' src="{{ section.settings.logo | image_url }}" alt='' width='' height='' /></li>
+      <div class="mo-nav">
+        <li class='nav-item1'><img id='logoImg' src="{{ section.settings.logo | image_url }}" alt='' width='' height='' /></li>
+        <li class='nav-btn'>x</li>
+      </div>
       <li class='nav-item2'><h5>{{ section.settings.Htext }}</h5></li>
       <li class='nav-item3'><button><span>{{ section.settings.HBtext }}</span> <span><bold>→</bold></span></button></li>
     </ul>
@@ -22,9 +25,9 @@
           <span>{{ section.settings.heroB }}</span> <span><bold>→</bold></span>
         </button>
         </div>
-      </div>
-      <h6>{{ section.settings.heroS }}</h6>
-  </div>
+    </div>
+    </div>
+    <center class='hero-sec2'><h6>{{ section.settings.heroS }}</h6></center>
 </header>
 
 {% schema %}

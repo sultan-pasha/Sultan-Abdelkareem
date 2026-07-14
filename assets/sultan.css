@@ -49,3 +49,48 @@ media-gallery:where(.media-gallery--grid) .media-gallery__grid {
 .product-information__grid{
   display: initial !important;
 }
+@media screen and (min-width:961px) {
+.nav-btn{
+    display: none;
+}
+}
+
+@media screen and (max-width:961px) {
+    .mo-nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-btn{
+    flex:.5;
+    font-size: 3em;
+}
+.nav-item1{
+    flex: 2;
+}
+
+.nav-item2, .nav-item3{
+    display: none;
+}
+
+#hero{
+    flex-direction: column-reverse !important;
+    position: relative !important;
+}
+#logoImg{
+    max-width: 100vw;
+}
+.hero-sec2{
+    width: 100vw;
+    text-align: center;
+    flex-direction: column-reverse !important;
+}
+.hero-desc button{
+    position: absolute;
+    right: 25%;
+    left: 25%;
+    bottom: 5%;
+}
+}
